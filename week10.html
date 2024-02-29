@@ -1,0 +1,54 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Week 10 assignment</title>
+     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+   </head>
+   <body class="container">
+    <br>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+          <label for="check-out-tool"> Tool ID</label>
+          <input type="text" class="form-control" id="check-out-tool" placeholder="Enter tool ID">
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+          <label for="project">Project(s) usage?</label>
+          <input type="text" class="form-control" id="project" placeholder="Project(s) use this tool?">
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="check-out-timestamp"> Check-out date</label>
+            <input type="date" class="form-control" id="check-out-timestamp">
+
+          </div>
+        </div>
+      </div>
+    <button id="add" class="btn btn-primary form-control">Submit</button>
+    <table id="submission-log" class="table table-dark table-striped">
+      <tr>
+        <th>Tool ID</th>
+        <th>Check-out date</th>
+        <th>Which project is using the tool?</th>
+        <th>Is the tool returned?</th>
+        <th>Returned date</th>
+      </tr>
+
+    </table>
+ 
+     <script src="./week10.js"></script>
+     <script src="node_modules/jquery/dist/jquery.js"></script>
+     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+   </body>
+ </html>
+ 
