@@ -7,7 +7,7 @@ class Tool{
 }
 class Project{
     constructor(id,projectName){
-        this.id=id;;
+        this.id=id;
         this.projectName=projectName;
         //array of all the tools that are going to be used for this project
         this.tools=[]
@@ -70,10 +70,11 @@ function drawDOM(){
         }
     }
 }
+//create a row when new tool's information is put in the system
 function createToolRow(project,table,tool){
     let row=table.insertRow(2);
     row.insertCell(0).innerHTML=tool.toolID;
-    row.insertCell(1).innerHTMP=tool.type;
+    row.insertCell(1).innerHTML=tool.type;
     let actions=row.insertCell(2);
     //create a button that takes a tool from a project and remove it
     actions.appendChild(createDeleteRowButton(project,tool));
@@ -83,7 +84,7 @@ function createDeleteProjectButton(project){
     let btn=document.createElement('button');
     btn.className='btn btn-danger';
     btn.innerHTML='Delete Project';
-    btn.onClick=()=>{
+    btn.onclick=()=>{
         let index=projects.indexOf(project);
         projects.splice(index,1);
         drawDOM();
@@ -92,24 +93,25 @@ function createDeleteProjectButton(project){
 }
 //Create delete function for a tool
 function createDeleteRowButton(project,tool){
-    let btn=document.createElement('button');
-    btn.className='btn btn-warning';
+    let btn=document.createElement('button'); 
+    btn.className='btn btn-warning';  
     btn.innerHTML="Delete tool";
-    btn.onClick=()=>{
+    btn.onclick=()=>{
         let index=project.tools.indexOf(tool);
         project.tools.splice(index,1);
         //we change the original data and regenerate and show a new data set
-        drawDOM()
+        drawDOM();
     }
     return btn;
 }
+
 function createNewToolButton(project){
     let btn = document.createElement('button');
     btn.className='btn btn-primary';
     btn.innerHTML='Add';
-    btn.onClick=()=>{
-        project.tools.push(new Tool())
-        drawDOM();
+    btn.onclick=()=>{
+        project.tools.push(new Tool(document.getElementById(`tool-input-${project.id}`).value,document.getElementById(`type-input-${project.id}`).value));
+        drawDOM(); 
     }
     return btn;
 }
@@ -118,7 +120,7 @@ function createNewToolButton(project){
 function createProjectTable(project){
     //create table that has information of this project
     let table=document.createElement('table');
-    table.setAttribute('class','table table-dark table-striped');
+    table.setAttribute('class','table table-striped table-hover');
     let row=table.insertRow(0);
     let toolColumn=document.createElement('th');
     let typeColumn=document.createElement('th');
@@ -132,11 +134,11 @@ function createProjectTable(project){
     let typeTh=document.createElement('th');
     let createTool=document.createElement('th');
     let toolIDInput=document.createElement('input');
-    toolIDInput.setAttribute('id',`tool-input-`)
+    toolIDInput.setAttribute('id',`tool-input-${project.id}`)
     toolIDInput.setAttribute('class','form-control');
     toolIDInput.setAttribute('type','text');
     let typeInput=document.createElement('input');
-    typeInput.setAttribute('id',`type-input`)
+    typeInput.setAttribute('id',`type-input-${project.id}`)
     typeInput.setAttribute('class','form-control');
     typeInput.setAttribute('type','text');
     //use this button to add tool to the specified project
@@ -150,30 +152,3 @@ function createProjectTable(project){
     insertToolRow.appendChild(createTool);
     return table;
 }
-
-/*let id=0;
-document.getElementById('add').addEventListener('click',()=>{
-    let table=document.getElementById('submission-log');
-    let row=table.insertRow(1);
-    row.setAttribute('id',`item ${id}`);
-    row.insertCell(0).innerHTML=document.getElementById('check-out-tool').value;
-    row.insertCell(1).innerHTML=document.getElementById('check-out-timestamp').value;
-     //`${createdDate.getMonth()}-${createdDate.getDate()}-${createdDate.getFullYear()}
-    row.insertCell(2).innerHTML=document.getElementById('project').value;
-    let action = row.insertCell(3);
-    action.appendChild(createReturnButton(id++));
-    document.getElementById('check-out-tool').value='';
-    document.getElementById('project').value='';
-
-})
-function createReturnButton(id){
-    let btn=document.createElement('button');
-    btn.className='btn btn-primary';
-    btn.id = id;
-    btn.innerHTML='Return';
-    btn.onClick=()=>{
-        //let returnDate = new Date();
-        //returnDate.parentNode.insertCell(returnDate);
-       row.insertCell(4).innerHTML=new Date();
-    }
-}*/
