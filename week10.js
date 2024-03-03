@@ -83,7 +83,7 @@ function createToolRow(project,table,tool){
 function createDeleteProjectButton(project){
     let btn=document.createElement('button');
     btn.className='btn btn-danger';
-    btn.innerHTML='Delete Project';
+    btn.innerHTML='Finish Project';
     btn.onclick=()=>{
         let index=projects.indexOf(project);
         projects.splice(index,1);
@@ -95,7 +95,7 @@ function createDeleteProjectButton(project){
 function createDeleteRowButton(project,tool){
     let btn=document.createElement('button'); 
     btn.className='btn btn-warning';  
-    btn.innerHTML="Delete tool";
+    btn.innerHTML="Return";
     btn.onclick=()=>{
         let index=project.tools.indexOf(tool);
         project.tools.splice(index,1);
